@@ -1,46 +1,46 @@
 
-//задание 1
+// //задание 1
 
-const windFromTheSea =
-    `Ветер с моря дул, ветер с моря дул
-Нагонял беду, нагонял беду
-И сказал ты мне, и сказал ты мне
-Больше не приду, больше не приду
+// const windFromTheSea =
+//     `Ветер с моря дул, ветер с моря дул
+// Нагонял беду, нагонял беду
+// И сказал ты мне, и сказал ты мне
+// Больше не приду, больше не приду
 
-Видно не судьба, видно не судьба
-Видно нет любви, видно нет любви
-Видно надо мной, видно надо мной
-Посмеялся ты, посмеялся ты
+// Видно не судьба, видно не судьба
+// Видно нет любви, видно нет любви
+// Видно надо мной, видно надо мной
+// Посмеялся ты, посмеялся ты
 
-Я тебя люблю, я тебя люблю
-Честно говорю, честно говорю
-Ведь ты знаешь сам, ведь ты знаешь сам
-Как тебя я жду, как тебя я жду
+// Я тебя люблю, я тебя люблю
+// Честно говорю, честно говорю
+// Ведь ты знаешь сам, ведь ты знаешь сам
+// Как тебя я жду, как тебя я жду
 
-Видно не судьба, видно не судьба
-Видно нет любви, видно нет любви
-Видно надо мной, видно надо мной
-Посмеялся ты, посмеялся ты`
+// Видно не судьба, видно не судьба
+// Видно нет любви, видно нет любви
+// Видно надо мной, видно надо мной
+// Посмеялся ты, посмеялся ты`;
 
 
-let str = windFromTheSea.replace(/,/g, "").replace(/\n/g, ' ').toLowerCase();
+// let str = windFromTheSea.replace(/,/g, "").replace(/\n/g, ' ').toLowerCase();
 
-let arr = str.split(' ');
+// let arr = str.split(' ');
 
-let set = new Set(arr);
+// let set = new Set(arr);
 
-let map = new Map();
+// let map = new Map();
 
-set.forEach((key, value) => {
-    let i = 1;
-    for (let a = 0; a < arr.length; a++) {
-        if (value === arr[a]) {
-            map.set(value, i++)
-        };
-    };
-});
+// set.forEach((key, value) => {
+//     let i = 1;
+//     for (let a = 0; a < arr.length; a++) {
+//         if (value === arr[a]) {
+//             map.set(value, i++);
+//         };
+//     };
+// });
 
-console.log(map);
+// console.log(map);
 
 
 
@@ -48,11 +48,12 @@ console.log(map);
 
 //задача 2
 
-let id = [];
-let map = new Map();
+const people = [];
+const map = new Map();
 let age = 0;
 let jump = 0;
-
+let averageAge = 0;
+let averageJump = 0;
 
 function Info(name, age, city, jump) {
     this.nama = name;
@@ -62,31 +63,27 @@ function Info(name, age, city, jump) {
 };
 
 while (true) {
-    let str = prompt("Введите через запятую: Имя, возраст, город, количество прыжков")
+    const str = prompt("Введите через запятую: Имя, возраст, город, количество прыжков");
 
     if (str === null || str === "") {
         break;
     };
 
-    let arr = str.split(",");
+    const arr = str.split(",");
+    people.push(new Info(arr[0], arr[1], arr[2], arr[3],));
+    people.forEach((item, index) => {
+        map.set("Гость " + ++index, item);
+    });
 
-    id.push(new Info(arr[0], arr[1], arr[2], arr[3],));
+    age += Number(arr[1]);
+    jump += Number(arr[3]);
+    averageAge = age / people.length;
+    averageJump = jump / people.length;
 };
 
-id.forEach((item, index) => {
-    map.set("Гость " + ++index, item);
-
-});
-
-map.forEach(function (value) {
-    age += value.age / map.size
-    jump += value.jump / map.size
-});
-
 console.log(map);
-console.log(`Средний возраст: ${age}
-Cреднее количество прыжков: ${jump}`);
-
+console.log(`Средний возраст: ${averageAge}
+Cреднее количество прыжков: ${averageJump}`);
 
 
 
@@ -94,36 +91,36 @@ Cреднее количество прыжков: ${jump}`);
 //задание 2
 //вариант 2
 
-let id = [];
-let map = new Map();
+// let id = [];
+// let map = new Map();
 
-while (true) {
-    let str = prompt("Введите через запятую: Имя, возраст, город, количество прыжков")
+// while (true) {
+//     let str = prompt("Введите через запятую: Имя, возраст, город, количество прыжков");
 
-    if (str === null || str === "") {
-        break;
-    };
+//     if (str === null || str === "") {
+//         break;
+//     };
 
-    let arr = str.split(",");
-    id.push(arr);
-};
+//     let arr = str.split(",");
+//     id.push(arr);
+// };
 
-id.forEach((item, index) => {
-    map.set("Гость " + ++index, item);
+// id.forEach((item, index) => {
+//     map.set("Гость " + ++index, item);
 
-});
+// });
 
-let age = 0;
-let jump = 0;
+// let age = 0;
+// let jump = 0;
 
-map.forEach((value) => {
-    age += value[1] / map.size
-    jump += value[3] / map.size
-});
+// map.forEach((value) => {
+//     age += value[1] / map.size;
+//     jump += value[3] / map.size;
+// });
 
-console.log(map);
-console.log(`Средний возраст: ${age}
-Cреднее количество прыжков: ${jump}`);
+// console.log(map);
+// console.log(`Средний возраст: ${age}
+// Cреднее количество прыжков: ${jump}`);
 
 
 
